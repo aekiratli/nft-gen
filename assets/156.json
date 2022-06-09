@@ -1,0 +1,43 @@
+{
+ "name": "Number #157",
+ "symbol": "NB",
+ "description": "Collection of 10 numbers on the blockchain. This is the number 1/10.",
+ "seller_fee_basis_points": 500,
+ "image": "156.png",
+ "attributes": [
+  {
+   "trait_type": "Layer-1",
+   "value": "3"
+  },
+  {
+   "trait_type": "Layer-2",
+   "value": "2"
+  },
+  {
+   "trait_type": "Layer-3",
+   "value": "1"
+  },
+  {
+   "trait_type": "Layer-4",
+   "value": "0"
+  }
+ ],
+ "properties": {
+  "creators": [
+   {
+    "address": "DavU8VbCATHKDXpw42BiiRFXUidkeLeg6KDUZ2xAgjbY",
+    "share": 100
+   }
+  ],
+  "files": [
+   {
+    "uri": "156.png",
+    "type": "image/png"
+   }
+  ]
+ },
+ "collection": {
+  "name": "numbers",
+  "family": "numbers"
+ }
+}

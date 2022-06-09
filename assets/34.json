@@ -1,0 +1,43 @@
+{
+ "name": "Number #35",
+ "symbol": "NB",
+ "description": "Collection of 10 numbers on the blockchain. This is the number 1/10.",
+ "seller_fee_basis_points": 500,
+ "image": "34.png",
+ "attributes": [
+  {
+   "trait_type": "Layer-1",
+   "value": "4"
+  },
+  {
+   "trait_type": "Layer-2",
+   "value": "2"
+  },
+  {
+   "trait_type": "Layer-3",
+   "value": "4"
+  },
+  {
+   "trait_type": "Layer-4",
+   "value": "0"
+  }
+ ],
+ "properties": {
+  "creators": [
+   {
+    "address": "DavU8VbCATHKDXpw42BiiRFXUidkeLeg6KDUZ2xAgjbY",
+    "share": 100
+   }
+  ],
+  "files": [
+   {
+    "uri": "34.png",
+    "type": "image/png"
+   }
+  ]
+ },
+ "collection": {
+  "name": "numbers",
+  "family": "numbers"
+ }
+}
