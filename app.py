@@ -106,15 +106,32 @@ for i in range(0, SUPPLY):
     file.write(json.dumps(data, indent=1))
     file.close()
 
+# for i in range(0, SUPPLY):
+#     print(i)
+#     layer1_img = ImageFormatToRGBA(Image.open(
+#         './config/layer_images/layer1/' + str(gen_l1[i]+1) + '.png'))
+#     layer2_img = ImageFormatToRGBA(Image.open(
+#         './config/layer_images/layer2/' + str(gen_l2[i]+1) + '.png'))
+#     layer3_img = ImageFormatToRGBA(Image.open(
+#         './config/layer_images/layer3/' + str(gen_l3[i]+1) + '.png'))
+#     layer4_img = ImageFormatToRGBA(Image.open(
+#         './config/layer_images/layer4/' + str(gen_l4[i]+1) + '.png'))
+#     mergedImg = MergeLayers(layer1_img, layer2_img, layer3_img, layer4_img)
+#     mergedImg.save('./assets/' + str(i)+".png")
+
+# gif 
+
 for i in range(0, SUPPLY):
     print(i)
     layer1_img = ImageFormatToRGBA(Image.open(
-        './config/layer_images/layer1/' + str(gen_l1[i]+1) + '.png'))
+        './config/layer_images/idle/layer1/' + str(gen_l1[i]+1) + '.png'))
     layer2_img = ImageFormatToRGBA(Image.open(
-        './config/layer_images/layer2/' + str(gen_l2[i]+1) + '.png'))
+        './config/layer_images/idle/layer2/' + str(gen_l2[i]+1) + '.png'))
     layer3_img = ImageFormatToRGBA(Image.open(
-        './config/layer_images/layer3/' + str(gen_l3[i]+1) + '.png'))
+        './config/layer_images/idle/layer3/' + str(gen_l3[i]+1) + '.png'))
     layer4_img = ImageFormatToRGBA(Image.open(
-        './config/layer_images/layer4/' + str(gen_l4[i]+1) + '.png'))
+        './config/layer_images/idle/layer4/' + str(gen_l4[i]+1) + '.png'))
     mergedImg = MergeLayers(layer1_img, layer2_img, layer3_img, layer4_img)
+    mergedImg.save('./assets/gif_idle/' + str(i) +".gif", save_all=True, append_images=[mergedImg])
+
     mergedImg.save('./assets/' + str(i)+".png")
