@@ -1,25 +1,29 @@
-from PIL import Image, ImageDraw
+from PIL import Image
+
+images = [Image.open(x) for x in ['./config/layer_images/idle/s1/layer1/1.png',
+                                  './config/layer_images/idle/s2/layer1/1.png',
+                                  './config/layer_images/right/s1/layer1/1.png',
+                                  './config/layer_images/right/s2/layer1/1.png']]
+widths, heights = zip(*(i.size for i in images))
+
+total_width = sum(widths)
+max_height = max(heights)
+
+new_im = Image.new('RGBA', (total_width, max_height))
+
+x_offset = 0
+for im in images:
+    new_im.paste(im, (x_offset, 0))
+    x_offset += im.size[0]
+
+new_im.save('test2.png')
 
 
-images = []
-
-width = 200
-center = width // 2
-color_1 = (0, 0, 0)
-color_2 = (255, 255, 255)
-max_radius = int(center * 1.5)
-step = 8
-
-# for i in range(0, 2):
-#     im = Image.new('RGBA', (width, width), color_1)
-#     print(i)
-#     draw = ImageDraw.Draw(im)
-#     draw.ellipse((center - i, center - i, center + i, center + i), fill=color_2)
-#     images.append(im)
-images.append(Image.open(
-        'config/layer_images/0.png'))
-images.append(Image.open(
-        'config/layer_images/1.png'))
-
-images[0].save('assets/d.gif',
-               save_all=True, append_images=images[1:], optimize=False, duration=1, loop=0)
+im1 = Image.open('test.png')
+im2 = Image.open('test2.png')
+def get_concat_v(im1, im2):
+    dst = Image.new('RGBA', (im1.width, im1.height + im2.height))
+    dst.paste(im1, (0, 0))
+    dst.paste(im2, (0, im1.height))
+    return dst
+get_concat_v(im1, im1).save('test3.png')

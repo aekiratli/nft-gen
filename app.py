@@ -120,29 +120,139 @@ for i in range(0, SUPPLY):
 #     mergedImg.save('./assets/' + str(i)+".png")
 
 # gif 
+def generateGifs(whichState):
+    for i in range(0, SUPPLY):
+        images = []
+        s1_layer1_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/'  '/s1/layer1/' + str(gen_l1[i]+1) + '.png'))
+        s1_layer2_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/'  '/s1/layer2/' + str(gen_l2[i]+1) + '.png'))
+        s1_layer3_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/'  '/s1/layer3/' + str(gen_l3[i]+1) + '.png'))
+        s1_layer4_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/'  '/s1/layer4/' + str(gen_l4[i]+1) + '.png'))
+        s1_mergedImg = MergeLayers(s1_layer1_img, s1_layer2_img, s1_layer3_img, s1_layer4_img)
 
-for i in range(0, SUPPLY):
-    images = []
+        s2_layer1_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/'  '/s2/layer1/' + str(gen_l1[i]+1) + '.png'))
+        s2_layer2_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/'  '/s2/layer2/' + str(gen_l2[i]+1) + '.png'))
+        s2_layer3_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/'  '/s2/layer3/' + str(gen_l3[i]+1) + '.png'))
+        s2_layer4_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/'  '/s2/layer4/' + str(gen_l4[i]+1) + '.png'))
+        s2_mergedImg = MergeLayers(s2_layer1_img, s2_layer2_img, s2_layer3_img, s2_layer4_img)
+        images.append(s1_mergedImg)
+        images.append(s2_mergedImg)
+        images[0].save('./assets/' +whichState+ '/' + str(i+1) +".gif", save_all=True, append_images=images[1:], duration=1000, loop=0, fps=2)
 
-    s1_layer1_img = ImageFormatToRGBA(Image.open(
-        './config/layer_images/idle/s1/layer1/' + str(gen_l1[i]+1) + '.png'))
-    s1_layer2_img = ImageFormatToRGBA(Image.open(
-        './config/layer_images/idle/s1/layer2/' + str(gen_l2[i]+1) + '.png'))
-    s1_layer3_img = ImageFormatToRGBA(Image.open(
-        './config/layer_images/idle/s1/layer3/' + str(gen_l3[i]+1) + '.png'))
-    s1_layer4_img = ImageFormatToRGBA(Image.open(
-        './config/layer_images/idle/s1/layer4/' + str(gen_l4[i]+1) + '.png'))
-    s1_mergedImg = MergeLayers(s1_layer1_img, s1_layer2_img, s1_layer3_img, s1_layer4_img)
+# generateGifs("idle")
 
-    s2_layer1_img = ImageFormatToRGBA(Image.open(
-        './config/layer_images/idle/s2/layer1/' + str(gen_l1[i]+1) + '.png'))
-    s2_layer2_img = ImageFormatToRGBA(Image.open(
-        './config/layer_images/idle/s2/layer2/' + str(gen_l2[i]+1) + '.png'))
-    s2_layer3_img = ImageFormatToRGBA(Image.open(
-        './config/layer_images/idle/s2/layer3/' + str(gen_l3[i]+1) + '.png'))
-    s2_layer4_img = ImageFormatToRGBA(Image.open(
-        './config/layer_images/idle/s2/layer4/' + str(gen_l4[i]+1) + '.png'))
-    s2_mergedImg = MergeLayers(s2_layer1_img, s2_layer2_img, s2_layer3_img, s2_layer4_img)
-    images.append(s1_mergedImg)
-    images.append(s2_mergedImg)
-    images[0].save('./assets/gif_idle/' + str(i) +".gif", save_all=True, append_images=images[1:], duration=1000, loop=0, fps=2)
+#sprite
+
+def get_concat_v(im1, im2):
+    dst = Image.new('RGBA', (im1.width, im1.height + im2.height))
+    dst.paste(im1, (0, 0))
+    dst.paste(im2, (0, im1.height))
+    return dst
+
+def generateSprite():
+    for i in range(0, SUPPLY):
+        images_r1 = []
+        images_r2 = []
+
+        s1_layer1_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/idle/s1/layer1/' + str(gen_l1[i]+1) + '.png'))
+        s1_layer2_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/idle/s1/layer2/' + str(gen_l2[i]+1) + '.png'))
+        s1_layer3_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/idle/s1/layer3/' + str(gen_l3[i]+1) + '.png'))
+        s1_layer4_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/idle/s1/layer4/' + str(gen_l4[i]+1) + '.png'))
+        s1_mergedImg = MergeLayers(s1_layer1_img, s1_layer2_img, s1_layer3_img, s1_layer4_img)
+
+        s2_layer1_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/idle/s2/layer1/' + str(gen_l1[i]+1) + '.png'))
+        s2_layer2_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/idle/s2/layer2/' + str(gen_l2[i]+1) + '.png'))
+        s2_layer3_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/idle/s2/layer3/' + str(gen_l3[i]+1) + '.png'))
+        s2_layer4_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/idle/s2/layer4/' + str(gen_l4[i]+1) + '.png'))
+        s2_mergedImg = MergeLayers(s2_layer1_img, s2_layer2_img, s2_layer3_img, s2_layer4_img)
+
+        images_r1.append(s1_mergedImg)
+        images_r1.append(s2_mergedImg)
+        images_r2.append(s1_mergedImg)
+        images_r2.append(s2_mergedImg)       
+
+        s1_layer1_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/right/s1/layer1/' + str(gen_l1[i]+1) + '.png'))
+        s1_layer2_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/right/s1/layer2/' + str(gen_l2[i]+1) + '.png'))
+        s1_layer3_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/right/s1/layer3/' + str(gen_l3[i]+1) + '.png'))
+        s1_layer4_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/right/s1/layer4/' + str(gen_l4[i]+1) + '.png'))
+        s1_mergedImg = MergeLayers(s1_layer1_img, s1_layer2_img, s1_layer3_img, s1_layer4_img)
+
+        s2_layer1_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/right/s2/layer1/' + str(gen_l1[i]+1) + '.png'))
+        s2_layer2_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/right/s2/layer2/' + str(gen_l2[i]+1) + '.png'))
+        s2_layer3_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/right/s2/layer3/' + str(gen_l3[i]+1) + '.png'))
+        s2_layer4_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/right/s2/layer4/' + str(gen_l4[i]+1) + '.png'))
+        s2_mergedImg = MergeLayers(s2_layer1_img, s2_layer2_img, s2_layer3_img, s2_layer4_img)
+        images_r1.append(s1_mergedImg)
+        images_r1.append(s2_mergedImg)
+
+        widths, heights = zip(*(i.size for i in images_r1))
+        total_width = sum(widths)
+        max_height = max(heights)
+
+        row1 = Image.new('RGBA', (total_width, max_height))
+
+        x_offset = 0
+        for im in images_r1:
+            row1.paste(im, (x_offset, 0))
+            x_offset += im.size[0]
+        # row1.save('./assets/sprite/' + str(i+1) + '.png')
+
+        s1_layer1_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/left/s1/layer1/' + str(gen_l1[i]+1) + '.png'))
+        s1_layer2_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/left/s1/layer2/' + str(gen_l2[i]+1) + '.png'))
+        s1_layer3_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/left/s1/layer3/' + str(gen_l3[i]+1) + '.png'))
+        s1_layer4_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/left/s1/layer4/' + str(gen_l4[i]+1) + '.png'))
+        s1_mergedImg = MergeLayers(s1_layer1_img, s1_layer2_img, s1_layer3_img, s1_layer4_img)
+
+        s2_layer1_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/left/s2/layer1/' + str(gen_l1[i]+1) + '.png'))
+        s2_layer2_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/left/s2/layer2/' + str(gen_l2[i]+1) + '.png'))
+        s2_layer3_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/left/s2/layer3/' + str(gen_l3[i]+1) + '.png'))
+        s2_layer4_img = ImageFormatToRGBA(Image.open(
+            './config/layer_images/left/s2/layer4/' + str(gen_l4[i]+1) + '.png'))
+        s2_mergedImg = MergeLayers(s2_layer1_img, s2_layer2_img, s2_layer3_img, s2_layer4_img)
+        images_r2.append(s1_mergedImg)
+        images_r2.append(s2_mergedImg)
+
+        widths, heights = zip(*(i.size for i in images_r2))
+        total_width = sum(widths)
+        max_height = max(heights)
+
+        row2 = Image.new('RGBA', (total_width, max_height))
+
+        x_offset = 0
+        for im in images_r2:
+            row2.paste(im, (x_offset, 0))
+            x_offset += im.size[0]
+
+        get_concat_v(row1, row2).save('./assets/sprite/' + str(i+1) + '.png')
+
+generateSprite()
